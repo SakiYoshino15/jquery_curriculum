@@ -70,28 +70,27 @@
 <script src="../../common/js/jquery.js"></script>
 <script>
 // 第1問  id='q1'の要素の文字色を赤色にせよ。
-  $(function(){ //jquery(document).ready(function(){}); htmlを読み込んだ後に処理を実行させるおまじない
+  $(function() { //jquery(document).ready(function(){}); htmlを読み込んだ後に処理を実行させるおまじない
 //$('セレクタ').jqueryの命令 どのHTMLの要素で操作するかをセレクタで指定して、操作する内容をそのあとに書く。
-    $('#q1').css('color','red');
+    $('#q1').css('color', 'red');
 
 // 第2問  id='q2'の要素をクリックしたら背景色をピンクにせよ。
     $('#q2').click(function(){
-      $(this).css('background-color','pink');
+      $(this).css('background-color', 'pink');
     });
 
 // 第3問  id='q3'の要素をクリックしたら2秒かけてフェードアウトさせよ。
-    $('#q3').click(function(){
+    $('#q3').click(fadeOut);
       // $(this).fadeOut(2000); //自分の回答
       // });
-      function fadeOut() {　//何度も使えるように関数化する
-          $(this).fadeOut(2000);
-      };
-    });
+    function fadeOut() {　//何度も使えるように関数化する
+      $(this).fadeOut(2000);
+    };
 
 // 第4問  id='q4'の要素をクリックしたらこの要素の前後とこの要素内の前後にテキストを挿入せよ。
     $('#q4').click(function() {
       $(this).before('DOMの前')
-            .after('DOMの後')
+             .after('DOMの後')
             .prepend('DOMの中の前')
             .append('DOMの中の後');
     });
@@ -102,7 +101,7 @@
     });
 
 // 第6問  id='q6'の要素をクリックしたらこの要素を2秒かけてmargin-topとmargin-leftを100pxの位置に移動させよ。{
-    $('#q6').click(function(){
+    $('#q6').click(function() {
       $(this).animate({
         'marginTop': 100,
         'marginLeft': 100
@@ -129,14 +128,14 @@
     //   console.log('3')
     // });
 
-    $('#q7').find('li').click(function(){
+    $('#q7').find('li').click(function() {
       var i = $(this).index();
       console.log(i);
       alert(i);
     });//答えを見た
 
 // 第8問  id='q8'の要素をhoverしたらlargeというクラスを付与し、hoverが外れたら、クラスを削除せよ。
-    $('#q8').hover(function(){
+    $('#q8').hover(function() {
       $(this).addClass('large');
     },function() {
       $(this).removeClass('large');
