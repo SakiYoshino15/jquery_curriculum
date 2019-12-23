@@ -42,6 +42,58 @@
       // .offset().top 要素の位置を取得します。
       // .fadeIn() 要素をフェードインさせる。
       // .fadeOut() 要素をフェードアウトさせる。
+      $(function(){
+
+        // var position = $('.contents').offset().top;//テキストタイトルのtopの位置
+
+
+        $('.menu__btn').click(function(){ //menu__btnがクリックされた時のイベント
+          var btn = $(this).data('scroll-place-type');  //クリックされたボタンは何か取得する。　
+          //=>変数 btnを定義して、その中にmenu__btnのclass名がついた要素のdata属性のscroll-plase-typeを取得する
+
+          var titleText = $('.contents').find('[data-scroll-place-type="'+btn+'"]').offset().top; //クリックされたボタンと文章のタイトルが一致するタイトルの高さを取得する。
+          //=>変数titleTextを定義して、その中にclass名contentの子孫要素からdata属性のscroll-plase-typeと変数btnで取得したものと一致するものを探して、その高さを取得しています。
+          // console.log(titleText);
+
+
+          $('body,html').animate({　 //body要素html要素にanimateイベントをつける
+            'scrollTop': titleText},300);　//animateイベントの第一引数にscrollTop()メソッドを使って変数titleTextで取得したところのtopまで動かす、第ニ引数に300ミリ秒をかけて動くように指定する。
+
+            });
+
+
+        //   $('p.title').each(function(i,item){
+        //     if(btn === item.data('scroll-place-type')){
+
+        //     //タイトルの高さを一発で習得する
+        //     // var bodyTitle = $('.title').find('scroll-place-type'+aaa+'').offset().top;//テストタイトルのdata
+
+        //   });
+          // if($(this).data('scroll-place-type') == bodyTitle){ //ボタンのdataとタイトルdata比較
+          //   console.log('a')
+          //   $('.contents').animate({'scrollTop': position},300);//
+          // };
+
+        //トップまで戻るボタンの表示
+        var topBtn = $('.scrollTopBtn');　//変数　topBtnにclass名scrollTopBtnがついた要素を指定したものを代入。
+        $(window).scroll(function(){　//windowにscroll()メソッドをつけてスクロールしたときに処理が実行されるようにする。
+          if($(this).scrollTop() > 100){ //if文を使って、第一条件式にスクロールが位置が100を超えた場合の指定して、
+            topBtn.fadeIn(); //それがtureだった場合topbtnが表示されるようにfadeIn()を使う。
+          }else {　// 第一条件式がfalseだった場合
+            topBtn.fadeOut();　//topBtnが表示されないようにfadeOut()を使う。
+          };
+        
+        //トップに戻るためのアニメーション
+          topBtn.click(function(){　//変数topBtnがクリックされた時に処理が実行されるようにclick()を使う。　
+            $('body,html').animate({　//body要素とhtml要素にanimate()を使う。==>==>
+              scrollTop : 0　//第一引数にscrollTop()を使って、その値に0を指定してページの一番上まで戻るようにする。
+            }, 500);　//第ニ引数には500ミリ秒かけて動くように指定する。
+          });
+        });
+        //==>==>bodyとhtmlなぜ両方指定する？？
+        //ブラウザによって動かない場合がある。念のために両方指定する。
+
+      });
     </script>
   </body>
 </html>
